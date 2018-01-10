@@ -98,3 +98,18 @@ if &term =~ '256color'
 endif  
 
 colorscheme monokai-soda
+
+map <F5> :call CompileAndRun()<CR>
+func! CompileAndRun()
+	exec 'w'
+	if &filetype == 'c'
+		exec ':!gcc % -g -o %<.out && ./%<.out'
+	elseif &filetype == 'cpp'
+		exec ':!g++ % -g -o %<.out && ./%<.out'
+	elseif &filetype == 'lua'
+		exec ':!lua %'
+	elseif &filetype == 'sh'
+		exec ':!./%'
+	endif
+endfunc
+
