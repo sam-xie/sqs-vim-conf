@@ -1,0 +1,3 @@
+[submodule "apt-vim"]
+	path = apt-vim
+	url = https://github.com/egalpin/apt-vim

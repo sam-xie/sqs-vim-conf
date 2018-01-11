@@ -113,3 +113,15 @@ func! CompileAndRun()
 	endif
 endfunc
 
+if filereadable(".vimrc-3rd")
+	set runtimepath+=.vimrc-3rd
+endif
+
+execute pathogen#infect()
+call pathogen#helptags()
+
+" nerdTree  - start
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" nerdTree  - end
