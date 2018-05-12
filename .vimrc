@@ -7,6 +7,8 @@ set report=0
 "set mouse=a
 set selection=exclusive
 
+autocmd FileType * setlocal formatoptions=tcqmM
+
 syntax enable
 syntax on
 set background=dark
@@ -97,7 +99,7 @@ if &term =~ '256color'
 	set t_ut= 
 endif  
 
-colorscheme monokai-soda
+colorscheme monokai
 
 map <F5> :call CompileAndRun()<CR>
 func! CompileAndRun()
@@ -120,8 +122,22 @@ endif
 execute pathogen#infect()
 call pathogen#helptags()
 
-" nerdTree  - start
+" nerdTree  - begin
+map <f1> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " nerdTree  - end
+
+" taglist - begin
+let Tlist_Show_One_File=1    " 只展示一个文件的taglist
+let Tlist_Exit_OnlyWindow=1  " 当taglist是最后以个窗口时自动退出
+let Tlist_Use_Right_Window=1 " 在右边显示taglist窗口
+let Tlist_Sort_Type="name"   " tag按名字排序
+" taglist - end
+
+" ycm - begin
+let g:ycm_server_python_interpreter='/usr/bin/python'
+let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+" ycm - end
+
